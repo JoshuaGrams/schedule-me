@@ -1,0 +1,11 @@
+html, body {
+	font-family: monospace;
+	width: 100vw;
+	margin: 0;
+	padding: 0;
+}
+form { padding: 0.5ex; }
+#schedule th { padding-top: 1.5ex; }
+#schedule td { white-space: pre; }
+#schedule span { border: thin solid #ccc; }
+#schedule span.selected { border-color: #000; }

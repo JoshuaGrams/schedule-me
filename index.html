@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Schedule Me</title>
+	<link href="style.css" rel="stylesheet">
+	<script src="config.js"></script>
+</head>
+<body>
+</body>
+	<form id="fields">
+		<input id="name" type="text" size="80">
+		<input id="hours" type="text" size="4">
+		<select id="color"></select>
+		<input type="submit" value="OK">
+	</form>
+	<form id="file">
+		<input type="submit" value="Save"> or
+		Load: <input type="file" id="load" accept=".json"> 
+	</form>
+	<table id="schedule">
+		<tr><th>Su</th><th>Mo</th><th>Tu</th><th>We</th><th>Th</th><th>Fr</th><th>Sa</th></tr>
+	</table>
+	<ol id="clips"></ol>
+	<script src="schedule-me.js"></script>
+</body>
+</html>
