@@ -299,7 +299,7 @@ const localStorageAvailable = storageAvailable('localStorage')
 function serializeState(jobs, hours) {
 	const start = jobs.start
 	jobs.start = formatDate(jobs.start)
-	const data = JSON.stringify({jobs: jobs, hours: hours}).replace(' ', '%20')
+	const data = JSON.stringify({jobs: jobs, hours: hours})
 	jobs.start = start
 	return data
 }
@@ -556,7 +556,7 @@ const fileForm = document.getElementById('file')
 // Save:
 fileForm.addEventListener('submit', function(evt) {
 	evt.preventDefault()
-	const data = serializeState(jobs, hours)
+	const data = serializeState(jobs, hours).replace(' ', '%20')
 	const link = N('a', {
 		href: 'data:application/json,' + data,
 		download: 'schedule.json',
