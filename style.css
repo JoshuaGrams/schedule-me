@@ -21,3 +21,10 @@ form { padding: 0.5ex; }
 #schedule span.selected { border-color: #000; }
 #schedule span.start { border-left: thin dashed #000; }
 #schedule span.end { border-right: thin dashed #000; }
+
+#legend {
+	font-size: larger;
+	display: flex;
+	flex-wrap: wrap;
+}
+#legend div { padding: 0.5ex; margin: 2em 0.5ex; }

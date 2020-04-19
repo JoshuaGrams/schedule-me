@@ -416,6 +416,7 @@ const form = document.getElementById('fields')
 const nameField = document.getElementById('name')
 const hourField = document.getElementById('hours')
 const colorField = document.getElementById('color')
+const legend = document.getElementById('legend')
 
 form.addEventListener('submit', function(evt) {
 	event.preventDefault()
@@ -435,6 +436,7 @@ function selectColor(color) {
 
 for(name in colors) {
 	N(colorField, N('option', name, {value: colors[name]}))
+	N(legend, N('div', name, {style: {'background-color': colors[name]}}, ' '))
 }
 selectColor(randomElement(Object.keys(colors)))
 
