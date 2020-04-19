@@ -177,8 +177,10 @@ function formatDate(date) {
 }
 
 function formatShortDate(date) {
+	const weekdays = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']
 	let m = 1 + date.getMonth(), d = date.getDate()
-	return m + '/' + d
+	let day = weekdays[date.getDay()]
+	return day + ' ' + m + '/' + d
 }
 
 function nextDay(date) {
@@ -199,13 +201,6 @@ function getHours(date, hours, defaultHours) {
 // Remove all but the first row (the header that gives the weekdays).
 function clearTable(table, startDate) {
 	while(table.rows.length > 1) table.deleteRow(-1)
-	const weekday = startDate.getDay()
-	let date = new Date(startDate.getTime())
-	date.setDate(date.getDate() - weekday)
-	for(let i=0; i<weekday; ++i) {
-		addCell(table, formatShortDate(date))
-		date = nextDay(date)
-	}
 }
 
 // Add a new cell.
