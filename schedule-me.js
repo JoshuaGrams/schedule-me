@@ -236,7 +236,11 @@ function addPiece(table, job, length, colors, offset, selected) {
 	const attribs = {
 		style: {"background-color": colors[job.color]}
 	}
-	if(selected) attribs.class = 'selected'
+	const classes = []
+	if(selected) classes.push('selected')
+	if(offset === 0) classes.push('start')
+	if(offset + length === round(job.hours/unit)) classes.push('end')
+	attribs.class = classes.join(' ')
 	N(row.cells[row.cells.length-1], N('span', attribs,
 		adjustLength(job.name.substring(offset), length),
 	))

@@ -5,7 +5,19 @@ html, body {
 	padding: 0;
 }
 form { padding: 0.5ex; }
-#schedule th { padding-top: 1.5ex; }
-#schedule td { white-space: pre; }
-#schedule span { border: thin solid #ccc; }
+#schedule {
+	border-spacing: 0;
+	border-collapse: collapse;
+}
+#schedule th {
+	padding: 0px;
+	padding-top: 1.5ex;
+	border-width: 0px thin;
+	border-style: none solid;
+	border-color: #ccc;
+}
+#schedule td { padding: 0px; white-space: pre; }
+#schedule span { border: thin solid #ccc; border-left: transparent; border-right: transparent; }
 #schedule span.selected { border-color: #000; }
+#schedule span.start { border-left: thin dashed #000; }
+#schedule span.end { border-right: thin dashed #000; }
