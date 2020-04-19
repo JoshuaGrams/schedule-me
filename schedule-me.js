@@ -295,7 +295,7 @@ const localStorageAvailable = storageAvailable('localStorage')
 function serializeState(jobs, hours) {
 	const start = jobs.start
 	jobs.start = formatDate(jobs.start)
-	const data = JSON.stringify({jobs: jobs, hours: hours})
+	const data = JSON.stringify({jobs: jobs, hours: hours}).replace(' ', '%20')
 	jobs.start = start
 	return data
 }
