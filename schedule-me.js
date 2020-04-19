@@ -4,7 +4,7 @@
  */
 
 const min = Math.min, max = Math.max
-const floor = Math.floor, round = Math.round
+const floor = Math.floor, ceil = Math.ceil, round = Math.round
 const random = Math.random
 function randomElement(a) { return a[floor(a.length * random())] }
 
@@ -231,7 +231,7 @@ function adjustLength(string, length) {
 }
 
 // Add a piece of a job to a cell.
-function addPiece(table, job, length, colors, offset, selected) {
+function addPiece(table, job, length, colors, offset, wordOffset, selected) {
 	const row = table.rows[table.rows.length-1]
 	const attribs = {
 		style: {"background-color": colors[job.color]}
@@ -241,15 +241,23 @@ function addPiece(table, job, length, colors, offset, selected) {
 	if(offset === 0) classes.push('start')
 	if(offset + length === round(job.hours/unit)) classes.push('end')
 	attribs.class = classes.join(' ')
+	const words = job.name.split(/(\s+)/)
+	let text = '', i
+	for(i=max(0,2*wordOffset-1); i<words.length; ++i) {
+		if(text.length + words[i].length > length) break;
+		text += words[i]
+	}
+	wordOffset = ceil(i/2)
 	N(row.cells[row.cells.length-1], N('span', attribs,
-		adjustLength(job.name.substring(offset), length),
+		adjustLength(text, length),
 	))
+	return wordOffset
 }
 
 function draw(table, jobs, hours, defaultHours, unit, colors) {
 	clearTable(table, jobs.start)
 	let date
-	let j = 0, hoursPlaced = 0, hoursToday = 0
+	let j = 0, hoursPlaced = 0, hoursToday = 0, wordOffset = 0
 	while(j < jobs.list.length) {
 		const job = jobs.list[j]
 		if(hoursToday === 0) {
@@ -262,10 +270,12 @@ function draw(table, jobs, hours, defaultHours, unit, colors) {
 		const length = round(used/unit)
 		const offset = round(hoursPlaced/unit)
 		const selected = (j === jobs.cursor)
-		addPiece(table, job, length, colors, offset, selected)
+		wordOffset = addPiece(table, job, length, colors, offset, wordOffset, selected)
 		hoursToday -= used
 		hoursPlaced += used
-		if(hoursPlaced === job.hours) { ++j;  hoursPlaced = 0 }
+		if(hoursPlaced === job.hours) {
+			++j;  hoursPlaced = 0; wordOffset = 0
+		}
 	}
 }
 
