@@ -358,7 +358,6 @@ let history = new CommandHistory({
 			jobs.list.splice(index, 0, {
 				name: name, hours: +hours, color: color
 			})
-			jobs.cursor = index + 1
 			// Return the index so we can undo by deleting it.
 			return [index]
 		},
@@ -471,6 +470,14 @@ const commands = {
 		jobs.cursor = min(jobs.list.length, jobs.cursor + 1)
 	},
 	"new job": function() {
+		nameField.value = ""
+		hourField.value = "1"
+		selectColor(randomContrastingColor(jobs.cursor))
+		nameField.focus()
+		pendingCommand('new job', jobs.cursor, nameField, hourField, colorField)
+	},
+	"new job after": function() {
+		if(jobs.cursor < jobs.list.length) ++jobs.cursor
 		nameField.value = ""
 		hourField.value = "1"
 		selectColor(randomContrastingColor(jobs.cursor))

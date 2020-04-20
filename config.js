@@ -30,7 +30,8 @@ const keyBindings = {
 	"l": "right",  "ArrowRight": "right",
 	"shift-j": "start earlier", "shift-ArrowLeft": "start earlier",
 	"shift-l": "start later",  "shift-ArrowRight": "start later",
-	" ": "new job", "n": "new job", "a": "new job", // Add a new job.
+	"b": "new job",  // Before the current job.
+	"a": "new job after", // After the current job.
 	"e": "edit job",
 	"w": "working hours",
 	"x": "delete",  "Delete": "delete",  "ctrl-x": "delete",
