@@ -237,7 +237,7 @@ function addPiece(table, job, length, colors, offset, wordOffset, selected) {
 	if(offset + length === round(job.hours/unit)) classes.push('end')
 	attribs.class = classes.join(' ')
 	const words = job.name.split(/(\s+)/)
-	let text = '', i
+	let text = ' ', i
 	for(i=max(0,2*wordOffset-1); i<words.length; ++i) {
 		if(text.length + words[i].length > length) break;
 		text += words[i]
